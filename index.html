@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intellabooks Home Care — DFW's Most Trusted Home Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #013356;
+            --navy-deep: #011f35;
+            --ember: #D97941;
+            --ember-light: #E8935C;
+            --green: #1A7A5E;
+            --green-light: #22A07C;
+            --gold: #D4AF37;
+            --warm-white: #F5F0E8;
+            --white: #FFFFFF;
+            --muted: rgba(245, 240, 232, 0.65);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(180deg, #011f35 0%, #000000 100%);
+            color: var(--warm-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── STICKY NAV ── */
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(1, 31, 53, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(217, 121, 65, 0.15);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--warm-white);
+            letter-spacing: -0.01em;
+        }
+
+        .nav-logo span { color: var(--ember); }
+
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--ember);
+            color: white;
+            text-decoration: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .nav-cta:hover { background: var(--ember-light); transform: translateY(-1px); }
+
+        .nav-phone {
+            font-size: 14px;
+            color: var(--warm-white);
+            opacity: 0.7;
+            margin-right: 12px;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 70% 30%, rgba(217, 121, 65, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 40% at 20% 70%, rgba(26, 122, 94, 0.07) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-eyebrow {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--ember);
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-eyebrow::before,
+        .hero-eyebrow::after {
+            content: '';
+            width: 32px;
+            height: 1px;
+            background: var(--ember);
+            opacity: 0.5;
+        }
+
+        .hero-headline {
+            font-size: clamp(48px, 7vw, 82px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            margin-bottom: 12px;
+            color: var(--warm-white);
+        }
+
+        .hero-headline .accent { color: var(--ember); }
+
+        .hero-sub-headline {
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 400;
+            color: rgba(245, 240, 232, 0.7);
+            margin-bottom: 28px;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-description {
+            font-size: clamp(17px, 2vw, 20px);
+            font-weight: 300;
+            max-width: 720px;
+            margin: 0 auto 48px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 72px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 18px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            background: var(--ember);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(217, 121, 65, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--ember-light);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 48px rgba(217, 121, 65, 0.55);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 18px 40px;
+            font-size: 16px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.05);
+            color: var(--warm-white);
+            text-decoration: none;
+            border-radius: 10px;
+            border: 1px solid rgba(245, 240, 232, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.09);
+            border-color: rgba(217, 121, 65, 0.4);
+        }
+
+        /* ── TRUST BAR ── */
+        .trust-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: rgba(245, 240, 232, 0.08);
+            border: 1px solid rgba(245, 240, 232, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .trust-item {
+            background: rgba(1, 31, 53, 0.6);
+            padding: 24px 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .trust-icon { font-size: 22px; margin-bottom: 8px; }
+
+        .trust-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--warm-white);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .trust-sub {
+            font-size: 11px;
+            color: rgba(245, 240, 232, 0.5);
+        }
+
+        /* ── SECTION BASE ── */
+        .section-eyebrow {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--ember);
+            font-weight: 600;
+            margin-bottom: 14px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--warm-white);
+        }
+
+        .section-desc {
+            font-size: clamp(17px, 2vw, 20px);
+            color: var(--muted);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* ── PROBLEM SECTION ── */
+        .problem-section {
+            padding: 120px 24px;
+            background: rgba(0,0,0,0.25);
+        }
+
+        .problem-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .problem-card {
+            background: rgba(1, 51, 86, 0.2);
+            border: 1px solid rgba(245, 240, 232, 0.07);
+            border-radius: 16px;
+            padding: 32px 28px;
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            border-color: rgba(217, 121, 65, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .problem-emoji { font-size: 32px; margin-bottom: 16px; display: block; }
+
+        .problem-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--warm-white);
+            margin-bottom: 10px;
+        }
+
+        .problem-card p {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        /* ── HOW IT WORKS ── */
+        .how-section {
+            padding: 120px 24px;
+        }
+
+        .steps-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .steps-row::before {
+            content: '';
+            position: absolute;
+            top: 36px;
+            left: 20%;
+            right: 20%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--ember), var(--green));
+            opacity: 0.4;
+        }
+
+        .step {
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .step-num {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--ember), #B86030);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            font-weight: 800;
+            color: white;
+            margin: 0 auto 24px;
+            box-shadow: 0 8px 32px rgba(217, 121, 65, 0.4);
+        }
+
+        .step:nth-child(2) .step-num {
+            background: linear-gradient(135deg, #1A7A5E, #0F5040);
+            box-shadow: 0 8px 32px rgba(26, 122, 94, 0.4);
+        }
+
+        .step:nth-child(3) .step-num {
+            background: linear-gradient(135deg, var(--gold), #A8881C);
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.4);
+        }
+
+        .step h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--warm-white);
+        }
+
+        .step p {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* ── SERVICES GRID ── */
+        .services-section {
+            padding: 120px 24px;
+            background: rgba(0,0,0,0.25);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .service-tile {
+            background: rgba(1, 51, 86, 0.25);
+            border: 1px solid rgba(245, 240, 232, 0.07);
+            border-radius: 16px;
+            padding: 32px 16px;
+            text-align: center;
+            cursor: default;
+            transition: all 0.3s ease;
+        }
+
+        .service-tile:hover {
+            border-color: rgba(217, 121, 65, 0.35);
+            background: rgba(217, 121, 65, 0.08);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(217, 121, 65, 0.15);
+        }
+
+        .service-icon { font-size: 36px; margin-bottom: 14px; display: block; }
+
+        .service-tile h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--warm-white);
+        }
+
+        /* ── ADVISOR SECTION ── */
+        .advisor-section {
+            padding: 120px 24px;
+        }
+
+        .advisor-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .advisor-content h2 {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--warm-white);
+        }
+
+        .advisor-content h2 em {
+            font-style: normal;
+            color: var(--ember);
+        }
+
+        .advisor-content p {
+            font-size: 17px;
+            color: var(--muted);
+            line-height: 1.75;
+            margin-bottom: 16px;
+            font-weight: 300;
+        }
+
+        .advisor-points {
+            list-style: none;
+            margin-top: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .advisor-points li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 16px;
+            color: var(--warm-white);
+        }
+
+        .advisor-points li::before {
+            content: '✓';
+            color: var(--green-light);
+            font-weight: 700;
+            font-size: 14px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .advisor-visual {
+            background: rgba(1, 51, 86, 0.25);
+            border: 1px solid rgba(245, 240, 232, 0.09);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .call-demo {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(245, 240, 232, 0.06);
+        }
+
+        .call-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .call-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--green-light);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.3); }
+        }
+
+        .call-status-text {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--green-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .call-message {
+            font-size: 15px;
+            color: var(--warm-white);
+            line-height: 1.65;
+            font-style: italic;
+        }
+
+        .call-message span {
+            color: var(--ember);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .advisor-stat-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .advisor-stat {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .advisor-stat .big {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--ember);
+            display: block;
+            letter-spacing: -0.02em;
+        }
+
+        .advisor-stat .label {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        /* ── SOCIAL PROOF ── */
+        .proof-section {
+            padding: 120px 24px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .review-card {
+            background: rgba(1, 51, 86, 0.2);
+            border: 1px solid rgba(245, 240, 232, 0.08);
+            border-radius: 20px;
+            padding: 32px 28px;
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            border-color: rgba(217, 121, 65, 0.25);
+            transform: translateY(-4px);
+        }
+
+        .stars {
+            color: var(--gold);
+            font-size: 16px;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .review-text {
+            font-size: 16px;
+            color: var(--warm-white);
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .reviewer {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ember);
+        }
+
+        .reviewer span {
+            color: var(--muted);
+            font-weight: 400;
+            font-size: 12px;
+            margin-left: 6px;
+        }
+
+        /* ── AREA ── */
+        .area-section {
+            padding: 80px 24px;
+        }
+
+        .area-cities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .city-pill {
+            background: rgba(1, 51, 86, 0.35);
+            border: 1px solid rgba(245, 240, 232, 0.1);
+            border-radius: 100px;
+            padding: 8px 20px;
+            font-size: 14px;
+            color: var(--warm-white);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .city-pill:hover {
+            border-color: rgba(217, 121, 65, 0.4);
+            color: var(--ember);
+        }
+
+        /* ── FINAL CTA ── */
+        .final-cta {
+            padding: 120px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(217, 121, 65, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(36px, 6vw, 64px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+            color: var(--warm-white);
+        }
+
+        .final-cta p {
+            font-size: 20px;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 48px;
+            line-height: 1.65;
+            font-weight: 300;
+        }
+
+        .final-note {
+            margin-top: 28px;
+            font-size: 14px;
+            color: rgba(245, 240, 232, 0.4);
+        }
+
+        .final-note strong { color: var(--green-light); }
+
+        /* ── FOOTER ── */
+        footer {
+            padding: 40px 24px;
+            border-top: 1px solid rgba(245, 240, 232, 0.06);
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: rgba(245, 240, 232, 0.35);
+        }
+
+        footer a { color: var(--ember); text-decoration: none; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .trust-bar { grid-template-columns: repeat(2, 1fr); }
+            .steps-row { grid-template-columns: 1fr; gap: 48px; }
+            .steps-row::before { display: none; }
+            .advisor-grid { grid-template-columns: 1fr; }
+            .nav-phone { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY NAV -->
+    <nav class="sticky-nav">
+        <div class="nav-logo">Intellabooks <span>Home Care</span></div>
+        <div style="display:flex;align-items:center;">
+            <span class="nav-phone">📞 (214) 000-0000</span>
+            <a href="tel:2140000000" class="nav-cta">Get Help Today →</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-eyebrow">DFW Home Services</div>
+            <h1 class="hero-headline">
+                Your Home Deserves<br>
+                <span class="accent">Someone You Can Trust</span>
+            </h1>
+            <p class="hero-sub-headline">Same-day response. Licensed pros. Available 24/7.</p>
+            <p class="hero-description">
+                Your home is everything — and when something goes wrong, you deserve someone 
+                who actually picks up the phone. We connect DFW homeowners with trusted, 
+                licensed professionals who show up the same day, every time. No voicemails. 
+                No waiting. Just help, when you need it most.
+            </p>
+
+            <div class="hero-ctas">
+                <a href="tel:2140000000" class="btn-primary">📞 Get Help Today</a>
+            </div>
+
+            <div class="trust-bar">
+                <div class="trust-item">
+                    <div class="trust-icon">⚡</div>
+                    <span class="trust-label">Same-Day Response</span>
+                    <span class="trust-sub">We show up fast</span>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">🔐</div>
+                    <span class="trust-label">Licensed & Insured</span>
+                    <span class="trust-sub">Every pro, verified</span>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">⭐</div>
+                    <span class="trust-label">5-Star Rated</span>
+                    <span class="trust-sub">DFW homeowners trust us</span>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">📞</div>
+                    <span class="trust-label">Available 24/7</span>
+                    <span class="trust-sub">Never a voicemail</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services-section">
+        <div class="container">
+            <p class="section-eyebrow">What We Cover</p>
+            <h2 class="section-title">Every home need, handled with care</h2>
+            <p class="section-desc">Whether it's an urgent repair or a long-overdue tune-up, we're here for all of it. Our network of trusted DFW professionals is ready to help — whatever your home needs today.</p>
+
+            <div class="services-grid">
+                <div class="service-tile">
+                    <span class="service-icon">🏠</span>
+                    <h3>Roofing</h3>
+                </div>
+                <div class="service-tile">
+                    <span class="service-icon">❄️</span>
+                    <h3>HVAC</h3>
+                </div>
+                <div class="service-tile">
+                    <span class="service-icon">🔧</span>
+                    <h3>Plumbing</h3>
+                </div>
+                <div class="service-tile">
+                    <span class="service-icon">⚡</span>
+                    <h3>Electrical</h3>
+                </div>
+                <div class="service-tile">
+                    <span class="service-icon">🌿</span>
+                    <h3>Lawn Care</h3>
+                </div>
+                <div class="service-tile">
+                    <span class="service-icon">🧼</span>
+                    <h3>Cleaning</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-section" id="how-it-works">
+        <div class="container">
+            <p class="section-eyebrow">Simple Process</p>
+            <h2 class="section-title">We make it easy — really easy</h2>
+            <p class="section-desc">No forms, no hold music, no runaround. Just one call and we take it from there. You've got enough on your plate — let us handle this part.</p>
+
+            <div class="steps-row">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h3>Call or click</h3>
+                    <p>Our receptionist answers immediately, any time of day or night. Just tell us what's going on and where you are — we've got you.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h3>We find your person</h3>
+                    <p>We match you with the right licensed professional for your exact situation — vetted, insured, and genuinely good at what they do.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h3>Help is on the way</h3>
+                    <p>Same-day service, a straightforward quote, and a job done right. We follow up afterward just to make sure everything feels good.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUSTED ADVISOR -->
+    <section class="advisor-section">
+        <div class="container">
+            <div class="advisor-grid">
+                <div class="advisor-content">
+                    <p class="section-eyebrow" style="text-align:left;">Why Intellabooks Home Care</p>
+                    <h2>Your most trusted <em>home advisor,</em> not just a directory</h2>
+                    <p>We genuinely care about what happens to your home. We don't just hand you a phone number and wish you luck — we stay with you through the whole process, from the first call to the final walkthrough.</p>
+                    <p>Intellabooks Home Care was built on one simple belief: every homeowner deserves fast help from someone they can trust. That's it. That's what we do, every single day.</p>
+                    <ul class="advisor-points">
+                        <li>Our receptionist answers immediately — no voicemail, ever</li>
+                        <li>Every professional is licensed, insured, and background-checked</li>
+                        <li>We follow up after the job to make sure you're truly happy</li>
+                        <li>One call takes care of roofing, HVAC, plumbing, and more</li>
+                        <li>Here for DFW homeowners 24 hours a day, 365 days a year</li>
+                    </ul>
+                </div>
+                <div class="advisor-visual">
+                    <div class="call-demo">
+                        <div class="call-status">
+                            <div class="call-dot"></div>
+                            <span class="call-status-text">Live — answering now</span>
+                        </div>
+                        <p class="call-message">
+                            "Hi, this is <span>Intellabooks Home Care</span>. I can hear this sounds urgent — let me get the right person to your home today. Can I get your address and a quick description of what's happening?"
+                        </p>
+                    </div>
+                    <div class="advisor-stat-row">
+                        <div class="advisor-stat">
+                            <span class="big">2 sec</span>
+                            <span class="label">Average answer time</span>
+                        </div>
+                        <div class="advisor-stat">
+                            <span class="big">24/7</span>
+                            <span class="label">Always available</span>
+                        </div>
+                        <div class="advisor-stat">
+                            <span class="big">100%</span>
+                            <span class="label">Calls answered</span>
+                        </div>
+                        <div class="advisor-stat">
+                            <span class="big">Same<br>day</span>
+                            <span class="label">Response guarantee</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section class="proof-section">
+        <div class="container">
+            <p class="section-eyebrow">From DFW Homeowners</p>
+            <h2 class="section-title">Neighbors helping neighbors</h2>
+            <p class="section-desc">We're proud to serve the families of DFW. Here's what a few of them had to say.</p>
+
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"They answered at 9pm on a Sunday when my roof was leaking after the storm. Had a crew at my house by 8am Monday. I couldn't believe it."</p>
+                    <p class="reviewer">Sarah M. <span>— Frisco, TX</span></p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"AC went out on a 104-degree day. Called and got a real response immediately — not a recording. Tech was there within four hours. These people are the real deal."</p>
+                    <p class="reviewer">Marcus T. <span>— Plano, TX</span></p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"I've called three other companies in the past and always got voicemail. Intellabooks picked up instantly and even called me after the job to make sure I was happy. That follow-up made all the difference."</p>
+                    <p class="reviewer">Jennifer R. <span>— Allen, TX</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICE AREA -->
+    <section class="area-section">
+        <div class="container">
+            <p class="section-eyebrow">Service Area</p>
+            <h2 class="section-title" style="margin-bottom:16px;">Proudly serving the DFW Metroplex</h2>
+            <p class="section-desc">We serve homeowners across Dallas, Fort Worth, and all surrounding communities.</p>
+            <div class="area-cities">
+                <span class="city-pill">Dallas</span>
+                <span class="city-pill">Fort Worth</span>
+                <span class="city-pill">Plano</span>
+                <span class="city-pill">Frisco</span>
+                <span class="city-pill">Allen</span>
+                <span class="city-pill">McKinney</span>
+                <span class="city-pill">Prosper</span>
+                <span class="city-pill">Celina</span>
+                <span class="city-pill">Southlake</span>
+                <span class="city-pill">Keller</span>
+                <span class="city-pill">Grapevine</span>
+                <span class="city-pill">Irving</span>
+                <span class="city-pill">Garland</span>
+                <span class="city-pill">Richardson</span>
+                <span class="city-pill">Lewisville</span>
+                <span class="city-pill">Arlington</span>
+                <span class="city-pill">Mansfield</span>
+                <span class="city-pill">Flower Mound</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to get this handled today?</h2>
+            <p>You shouldn't have to stress about finding someone you can trust. One call and we take care of everything — we promise to make it easy.</p>
+            <a href="tel:2140000000" class="btn-primary" style="font-size:18px; padding:20px 52px;">📞 Call Now — We Answer 24/7</a>
+            <p class="final-note">
+                <strong>✓ No voicemail.</strong> &nbsp;
+                <strong>✓ No waiting.</strong> &nbsp;
+                <strong>✓ Same-day service.</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>© 2025 <a href="https://intellabooks.com">Intellabooks Home Care</a> · A service of <a href="https://intellabooks.com">Intellabooks</a> · Serving DFW Homeowners 24/7</p>
+        </div>
+    </footer>
+
+</body>
+</html>
